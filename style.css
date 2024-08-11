@@ -1,0 +1,76 @@
+#navbar {
+    overflow: hidden;
+    background-color: #333;
+    margin: auto;
+    opacity: 75%;
+    float:left;
+  }
+  
+  /* Navbar links */
+#navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 1%;
+    text-decoration: none;
+    font-family: CC_font;
+    font-size: 30px;
+}
+  
+  /* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow: scroll;
+}
+
+
+#endcard {
+  margin: auto;
+  text-align: center;
+  font-family: CC_font;
+  overflow: hidden;
+  background-color: #333;
+  margin: auto;
+  opacity: 75%;
+  padding:10px;
+}
+#endcard p {
+  display:block;
+  color:#f2f2f2;
+}
+
+@font-face {
+  font-family: CC_font;
+  src: url("content/CC\ Accidenz\ Commons-medium.otf")
+}
+html, body{ 
+  margin:0;
+  padding:0;
+}
+
+
+#endcard a {
+  text-decoration:underline;
+  color:white;
+}
+#endcard a:hover{
+  color:green;
+  text-decoration: underline;
+}
+
+body {
+  background-color: white;
+}
+
+/* i have a div id named margin, how do i make it so that it's tall enough for navbar*/
+/* make it dynamic? */
+#margin {
+  height: 60px;
+}
+
+#link {
+  float:right;
+}
