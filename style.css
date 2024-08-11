@@ -74,3 +74,9 @@ body {
 #link {
   float:right;
 }
+
+#content {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
