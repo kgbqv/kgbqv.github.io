@@ -10,13 +10,7 @@ function parseMarkdown(md) {
 }
 async function fetchPostList() {
     try {
-        const response = await fetch("/blog/");
-        const text = await response.text();
-        const files = Array.from(text.matchAll(/href="([^"]+\.md)"/g)).map(m => m[1]);
-        for (let i = 0; i < files.length; i++) {
-            files[i] = files[i].substring(6);
-        }
-        allPosts = files;
+        allPosts = ["first_post.md","stress.md"];
         console.log("All posts:", allPosts);
         renderPosts(currentPage);
     } catch (error) {
