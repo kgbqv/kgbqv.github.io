@@ -10,10 +10,7 @@ function parseMarkdown(md) {
 }
 async function fetchPostList() {
     try {
-        const response = await fetch("/blog/");
-        const text = await response.text();
-        const files = Array.from(text.matchAll(/href="([^"]+\.md)"/g)).map(m => m[1]);
-        allPosts = files;
+        allPosts = ["first_post.md"];
         console.log("All posts:", allPosts);
         renderPosts(currentPage);
     } catch (error) {
@@ -34,7 +31,7 @@ async function renderPosts(page) {
     }
 
     for (const post of pagePosts) {
-        const response = await fetch(`${post}`);
+        const response = await fetch(`/blog/${post}`);
         const mdText = await response.text();
         const { title, date, tags, content } = parseMarkdown(mdText);
 

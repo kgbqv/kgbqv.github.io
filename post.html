@@ -235,7 +235,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
                 }
     
                 try {
-                    const response = await fetch(`${file}`);
+                    const response = await fetch(`/blog/${file}`);
                     const mdText = await response.text();
     
                     const { title, date, tags, content } = parseMarkdown(mdText);
