@@ -227,7 +227,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
             }
             async function renderPost() {
                 const params = new URLSearchParams(window.location.search);
-                const file = params.get("file"); 
+                const file = params.get("post"); 
     
                 if (!file) {
                     document.getElementById("post-container").innerHTML = "<p>No post found.</p>";
@@ -235,7 +235,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
                 }
     
                 try {
-                    const response = await fetch(`/blog/${file}`);
+                    const response = await fetch(`/blog/${file}.md`);
                     const mdText = await response.text();
     
                     const { title, date, tags, content } = parseMarkdown(mdText);

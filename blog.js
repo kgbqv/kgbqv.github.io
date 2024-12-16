@@ -38,7 +38,7 @@ async function renderPosts(page) {
         const postElement = document.createElement("div");
         postElement.classList.add("content");
         postElement.innerHTML = `
-            <h2><a href="post.html?file=${post}">${title}</a></h2>
+            <h2><a href="post.html?post=${post.substring(0, post.length - 3)}">${title}</a></h2>
             <p><strong>Date:</strong> ${date}</p>
             <p><strong>Tags:</strong> ${tags.substring(1, tags.length - 1)}</p>
             <p>${content.slice(0, 100)}${(content.length > 100)?"...":""}</p>
