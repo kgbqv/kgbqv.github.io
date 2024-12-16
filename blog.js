@@ -10,7 +10,13 @@ function parseMarkdown(md) {
 }
 async function fetchPostList() {
     try {
-        allPosts = ["first_post.md"];
+        const response = await fetch("/blog/");
+        const text = await response.text();
+        const files = Array.from(text.matchAll(/href="([^"]+\.md)"/g)).map(m => m[1]);
+        for (let i = 0; i < files.length; i++) {
+            files[i] = files[i].substring(6);
+        }
+        allPosts = files;
         console.log("All posts:", allPosts);
         renderPosts(currentPage);
     } catch (error) {
@@ -29,8 +35,9 @@ async function renderPosts(page) {
         container.innerHTML = "<p>No posts found.</p>";
         return;
     }
-
+    let i = 0;
     for (const post of pagePosts) {
+
         const response = await fetch(`/blog/${post}`);
         const mdText = await response.text();
         const { title, date, tags, content } = parseMarkdown(mdText);
@@ -44,6 +51,12 @@ async function renderPosts(page) {
             <p>${content.slice(0, 100)}${(content.length > 100)?"...":""}</p>
         `;
         container.appendChild(postElement);
+        if (i !== pagePosts.length - 1) {
+            const marginDiv = document.createElement("div");
+            marginDiv.id = "margin";
+            container.appendChild(marginDiv);
+            i++;
+        }
     }
 
     updatePagination(page);
