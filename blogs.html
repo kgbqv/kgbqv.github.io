@@ -16,7 +16,6 @@
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 		</style>
-		<script src="animate.js"></script>
 		<script src="https://xemantic.github.io/shader-web-background/dist/shader-web-background.min.js"></script>
 		<script type="x-shader/x-fragment" id="Image">
 			precision highp float;
@@ -211,15 +210,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 		<div id="margin"></div>
 		<div id="margin"></div>
 		
-		<div class="content" >
-			<img src="content/LOGO_TEMP.png" alt="Logo" style="width:60%;height:auto;margin:auto;">
-			<section id="hero">
-				<h1 id="animated-text">welcome to khgb's website</h1>
-			</section>
-		
-				<p>chronically online, tech nerd that likes code, anime n other random stuff.</p>
-		
-		</div>
+        <div id="blog-container"></div>
+        <div id="pagination">
+            <button id="prev-btn" disabled>prev</button>
+            <span id="page-info"></span>
+            <button id="next-btn">next</button>
+        </div>
+
+
 		<div id="margin"></div>
 		<div id="endcard">
 			<div id="social_med">
@@ -233,5 +231,6 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 				<p> Displayed using <a href = "https://github.com/xemantic/shader-web-background">shader-web-background</a></p>
 			</div>
 		</div>
+        <script src="blog.js"></script>
 	</body>
 </html>

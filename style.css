@@ -114,18 +114,20 @@ body {
 }
 
 
-#content {
+.content {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  background-color: rgba(0.2, 0.2, 0.2, 0.5);
+  background-color: rgba(0.2, 0.2, 0.2, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   width:50%;
   margin:auto;
+  font-family: Source Code Pro;
+  color: white;
 }
 
-#content h1{
+.content h1{
   text-shadow:
   -1px -1px 0 #000,
   1px -1px 0 #000,
@@ -133,8 +135,8 @@ body {
   1px 1px 0 #000;
 }
 
-#content {
-  font-family: Source Code Pro;
+.content a{
+  text-decoration: underline;
   color: white;
 }
 
@@ -142,3 +144,44 @@ body {
 #gap {
   height: 100vh;
 }
+
+#pagination {
+  margin:auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+#pagination button {
+  background: #000000dd;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: Source Code Pro;
+}
+
+#pagination button:disabled {
+  visibility: hidden;
+}
+
+#page-info {
+  background: #000000ab;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  font-family:Source Code Pro;
+  color:white;
+}
+
+
+#page-info {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+

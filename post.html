@@ -16,7 +16,6 @@
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 		</style>
-		<script src="animate.js"></script>
 		<script src="https://xemantic.github.io/shader-web-background/dist/shader-web-background.min.js"></script>
 		<script type="x-shader/x-fragment" id="Image">
 			precision highp float;
@@ -211,15 +210,51 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 		<div id="margin"></div>
 		<div id="margin"></div>
 		
-		<div class="content" >
-			<img src="content/LOGO_TEMP.png" alt="Logo" style="width:60%;height:auto;margin:auto;">
-			<section id="hero">
-				<h1 id="animated-text">welcome to khgb's website</h1>
-			</section>
-		
-				<p>chronically online, tech nerd that likes code, anime n other random stuff.</p>
-		
-		</div>
+        <div id="post" class="content"></div>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script>
+            // Function to parse the Markdown content safely (convert from plain text to HTML)
+            function parseMarkdown(md) {
+                const [_, meta, content] = md.match(/---\n([\s\S]+?)\n---\n([\s\S]*)/);
+                const metadata = Object.fromEntries(
+                    meta.split("\n").map(line => line.split(": ").map(s => s.trim()))
+                );
+    
+                // Replace newlines with <br> for line breaks and ensure HTML content
+                const contentHtml = content.replace(/\n/g, "<br>").replace(/>\s*</g, "><");
+                
+                return { ...metadata, content: contentHtml };
+            }
+            async function renderPost() {
+                const params = new URLSearchParams(window.location.search);
+                const file = params.get("file"); 
+    
+                if (!file) {
+                    document.getElementById("post-container").innerHTML = "<p>No post found.</p>";
+                    return;
+                }
+    
+                try {
+                    const response = await fetch(`${file}`);
+                    const mdText = await response.text();
+    
+                    const { title, date, tags, content } = parseMarkdown(mdText);
+    
+                    const container = document.getElementById("post");
+                    container.innerHTML = `
+                        <h2>${title}</h2>
+                        <p><strong>Date:</strong> ${date}</p>
+                        <p><strong>Tags:</strong> ${tags.substring(1, tags.length - 1)}</p>
+                        <div>${marked.parse(content)}</div>
+                    `;
+                } catch (error) {
+                    console.error("Error fetching post:", error);
+                    document.getElementById("post").innerHTML = "<p>Post not found.</p>";
+                }
+            }
+            document.addEventListener("DOMContentLoaded", renderPost);
+        </script>
+
 		<div id="margin"></div>
 		<div id="endcard">
 			<div id="social_med">
@@ -233,5 +268,6 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 				<p> Displayed using <a href = "https://github.com/xemantic/shader-web-background">shader-web-background</a></p>
 			</div>
 		</div>
+        <script src="blog.js"></script>
 	</body>
 </html>
