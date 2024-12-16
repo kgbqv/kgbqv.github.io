@@ -84,7 +84,8 @@ p {
   }
 }
 #margin {
-  margin-top: 5%;
+  height: 10vh;
+  width: 100%;
 }
 
 #social_med {
